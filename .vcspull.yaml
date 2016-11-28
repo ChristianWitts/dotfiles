@@ -1,0 +1,20 @@
+~/Workspace/General/:
+  single_file_libs: git+git@github.com:nothings/single_file_libs.git
+  stb: git+git@github.com:nothings/stb.git
+  telegraf: git+git@github.com:influxdata/telegraf.git
+  immer: git+git@github.com:arximboldi/immer.git
+
+~/Workspace/Conferences/CppCon/:
+  CppCon2014: git+git@github.com:CppCon/CppCon2014.git
+  CppCon2015: git+git@github.com:CppCon/CppCon2015.git
+  CppCon2016: git+git@github.com:CppCon/CppCon2016.git
+
+~/Workspace/Private/GitHub/:
+  dotfiles: git+git@github.com:ChristianWitts/dotfiles.git
+  Dockerfiles: git+git@github.com:ChristianWitts/Dockerfiles.git
+  glowing-couscous: git+git@github.com:ChristianWitts/glowing-couscous.git
+  ChristianWitts.github.io: git+git@github.com:ChristianWitts/ChristianWitts.github.io.git
+  nginx-service-generator: git+git@github.com:ChristianWitts/nginx-service-generator.git
+  spamhaus: git+git@github.com:ChristianWitts/spamhaus.git
+  UNIX-tools: git+git@github.com:ChristianWitts/UNIX-tools.git
+
