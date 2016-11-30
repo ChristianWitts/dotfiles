@@ -4,6 +4,7 @@
   telegraf: git+git@github.com:influxdata/telegraf.git
   immer: git+git@github.com:arximboldi/immer.git
   tiny-dnn: git+git@github.com:tiny-dnn/tiny-dnn.git
+  expressions-template-library: git+git@github.com:wichtounet/etl.git
 
 ~/Workspace/Conferences/CppCon/:
   CppCon2014: git+git@github.com:CppCon/CppCon2014.git
