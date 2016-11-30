@@ -21,3 +21,5 @@
   UNIX-tools: git+git@github.com:ChristianWitts/UNIX-tools.git
   jump-commander: git+git@github.com:ChristianWitts/jump-commander.git
 
+~/Workspace/Languages/Rust:
+  vndf: git+git@github.com:hannobraun/vndf.git
