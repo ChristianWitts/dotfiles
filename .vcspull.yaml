@@ -27,3 +27,14 @@
 
 ~/Workspace/Languages/Rust:
   vndf: git+git@github.com:hannobraun/vndf.git
+
+~/Workspace/Languages/Python/:
+  http-parser: git+git@github.com:benoitc/http-parser.git
+
+~/Workspace/Languages/Lua:
+  torch: git+git@github.com:torch/distro.git
+  torch-video-tutorials: git+git@github.com:Atcold/torch-Video-Tutorials.git
+
+~/Workspace/Games/:
+  cataclysm-dda: git+git@github.com:CleverRaven/Cataclysm-DDA.git
+
