@@ -8,6 +8,7 @@
   concurrentqueue: git+git@github.com:cameron314/concurrentqueue.git
   problem-solving: git+git@github.com:sangupta/ps.git
   libclub: git+git@github.com:inetic/libclub.git
+  CxxFiber: git+git@github.com:cxxjava/CxxFiber.git
 
 ~/Workspace/Conferences/CppCon/:
   CppCon2014: git+git@github.com:CppCon/CppCon2014.git
