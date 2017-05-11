@@ -33,10 +33,10 @@ function code-on {
 # Locals:
 #   BRANCH          => Current branch you're working on
 #   TRACKING_BRANCH => The upstream tracking branch you're merging to
-#   REVIEWER        => Someone to review your PR, if you want to assign
-#   it
+#   REVIEWER_LIST   => Someone(s) to review your PR, if you want to
+#   assign it
 # Arguments:
-#   $1 => The reviewer in stash you want to assign [optional]
+#   $@ => The reviewer(s) in stash you want to assign [optional]
 # Returns:
 #   None
 #######################################
@@ -46,10 +46,15 @@ function code-pr-stash {
     local TRACKING_BRANCH=`git rev-parse --abbrev-ref
 --symbolic-full-name @{upstream} | awk '{sub(/\//," ")}1' | awk '{print
 $2}'`
-    local REVIEWER=${1}
-    [ ! -z "${REVIEWER}" ] && [[ ! ${REVIEWER:0:1} == "@" ]] &&
-REVIEWER="@${REVIEWER}"
-    stash pull-request ${BRANCH} ${TRACKING_BRANCH} ${REVIEWER}
+    local REVIEWER_LIST=()
+    for REVIEWER in "$@"
+    do
+        if [[ ! ${REVIEWER:0:1} == "@" ]]; then
+            REVIEWER="@${REVIEWER}"
+        fi
+        REVIEWER_LIST+="${REVIEWER} "
+    done
+    stash pull-request ${BRANCH} ${TRACKING_BRANCH} ${REVIEWER_LIST[@]}
     set +e +x
 }
 
