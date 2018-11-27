@@ -100,6 +100,17 @@ function code-pr-github {
     set +x
 }
 
+function code-pr-self {
+    set -x
+    local BRANCH=`git rev-parse --abbrev-ref HEAD`
+    local TRACKING_BRANCH=`git rev-parse --abbrev-ref --symbolic-full-name @{upstream} | awk '{sub(/\//," ")}1' | awk '{print $2}'`
+    local MESSAGE=`git log --oneline -1 --pretty=%B`
+    git push origin HEAD:${BRANCH}
+    PR_LINK=$(echo "${MESSAGE}" | hub pull-request -b "${TRACKING_BRANCH}" -h "${BRANCH}" -a ChristianWitts -l enhancement -F -)
+    echo $PR_LINK
+    set +x
+}
+
 #######################################
 # Link your Pull Request to a JIRA issue
 # Globals:
@@ -167,11 +178,27 @@ function code-release {
     local TRACKING_BRANCH=`git rev-parse --abbrev-ref --symbolic-full-name @{upstream} | awk '{sub(/\//," ")}1' | awk '{print $2}'`
     git pull --rebase
     git rebase -i
-    git push origin HEAD:${BRANCH} -f
+    git push origin HEAD:${BRANCH} --force-with-lease
     git push origin HEAD:${TRACKING_BRANCH}
     git push origin :${BRANCH}
     git checkout ${TRACKING_BRANCH}
     git pull
     git branch -d ${BRANCH}
     set +x
+}
+
+# Gitignore generator helper
+function gi {
+    curl -L -s -o .gitignore https://www.gitignore.io/api/\$@
+}
+
+# Plot git commit history
+function gitc-plot {
+    git log --pretty=%ai |
+        sort |
+        cut -f1-2 -d' ' |
+        group-by-date -d -o %F |
+        sed 's/,/\t/' > /tmp/out.csv
+
+    ~/.user_scripts/plots/git-log.plot
 }
