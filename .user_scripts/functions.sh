@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+. lib.sh
 
 function static-compile-nim {
     local NIM_ENTRY="$1"
@@ -86,10 +87,23 @@ function man-preview {
 
 function mkgc {
     local REPO=$1
+    local HOST=$(awk '{split($0, a, ":"); print a[1]}' <<< $REPO | awk '{split($0, a, "@"); print a[2]}')
     local GH_NAME=$(awk '{split($0, a, ":"); print a[2]}' <<< $REPO)
     local BASE_NAME=$(dirname $GH_NAME)
     local REPO_NAME=$(awk '{split($0, a, "."); print a[1]}' <<< $(basename $GH_NAME))
-    mkcd $BASE_NAME
-    git clone $REPO
-    cd $REPO_NAME
+    [ -d ~/src/${HOST}/${BASE_NAME} ] || mkdir -p ~/src/${HOST}/${BASE_NAME}
+    git clone $REPO ~/src/${HOST}/${BASE_NAME}/${REPO_NAME}
+    cd ~/src/${HOST}/${BASE_NAME}/${REPO_NAME}
+}
+
+function update-things {
+    update-nim-devel \
+ && rustup self update \
+ && rustup update \
+ && brew upgrade \
+ && brew cleanup \
+ && choosenim update self \
+ && choosenum update stable \
+ && nimble update \
+ && gcloud components update
 }

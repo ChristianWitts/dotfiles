@@ -18,4 +18,4 @@ alias gssh='ssh -A -o StrictHostKeyChecking=no -i ~/.ssh/gcp-ir'
 alias mkcd='_(){ mkdir $1; cd $_; }; _'
 alias new_playbook='cookiecutter cookiecutter-ansible-role'
 alias eating_space='du -sh ./* | sort -h'
-
+alias cargo_space_eaters='find ~/src -type d -name target -print0 | xargs -0 du -hcd0 | sort -h'
